@@ -11,25 +11,27 @@ var nodeArgs = process.argv;
 var input = process.argv;
 var input1 = process.argv[2];
 var input2 = process.argv[3];
-var movieName = "";
+var input3 = process.argv.splice(3).join(" ");
+// var movieName = "";
 
 
 
 // for loop for putting + in place of a space in movie title to get correct query
-for (var i = 3; i < input.length; i++) {
+// for (var i = 3; i < input.length; i++) {
 
-    if (i > 3 && i < input.length) {
+//     if (i > 3 && i < input.length) {
 
-        movieName = movieName + "+" + nodeArgs[i];
+//        movieName = movieName + "+" + nodeArgs[i];
 
-    }
+//     }
 
-    else {
+//     else {
 
-        movieName += nodeArgs[i];
+//         movieName += nodeArgs[i];
 
-    }
-}
+//     }
+// }
+
 
 
 if (input1 === "my-tweets") {
@@ -52,8 +54,16 @@ if (input1 === "my-tweets") {
         }
     });
 }
+
 else if (input1 === "movie-this") {
-    var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&tomatoes=true&apikey=trilogy";
+    if (input3.length < 1) {
+
+        input3 = "Mr. Nobody";
+    };
+
+
+
+    var queryUrl = "http://www.omdbapi.com/?t=" + input3 + "&y=&plot=short&tomatoes=true&apikey=trilogy";
 
 
     request(queryUrl, function (error, response, body) {
@@ -62,7 +72,7 @@ else if (input1 === "movie-this") {
         if (!error && response.statusCode === 200) {
             var body = JSON.parse(body);
 
-            // console.log(body)
+
             // * Title of the movie.
             console.log("Title: " + body.Title)
             // * Year the movie came out.
@@ -83,8 +93,12 @@ else if (input1 === "movie-this") {
         }
     });
 }
+
 else if (input1 === "spotify-this-song") {
-    spotify1.search({ type: 'track', query: input2 }, function (err, data) {
+    if (input3.length < 1){
+        input3 = "the sign ace of base"
+    }
+    spotify1.search({ type: 'track', query: input3 }, function (err, data) {
         if (err) {
             console.log('Error occurred: ' + err);
             return;
@@ -96,7 +110,26 @@ else if (input1 === "spotify-this-song") {
         console.log("Album: " + data.tracks.items[0].album.name)
     });
 
+if (input1 === "do") {
+    fs.readFile("./random.txt", "utf-8", function(error, data) {
 
+        // If the code experiences any errors it will log the error to the console.
+        if (error) {
+          return console.log(error);
+        }
+      
+        // We will then print the contents of data
+        console.log(data);
+      
+        // Then split it by commas (to make it more readable)
+        // var dataArr = data.split(",");
+      
+        // // We will then re-display the content as an array for later use.
+        // console.log(dataArr);
+      
+      });
 }
 
+
+}
 
