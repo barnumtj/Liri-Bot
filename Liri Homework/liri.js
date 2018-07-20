@@ -14,7 +14,7 @@ var input2 = process.argv[3];
 var input3 = process.argv.splice(3).join(" ");
 // var movieName = "";
 
-
+run(input1, input3);
 
 // for loop for putting + in place of a space in movie title to get correct query
 // for (var i = 3; i < input.length; i++) {
@@ -30,17 +30,28 @@ var input3 = process.argv.splice(3).join(" ");
 //         movieName += nodeArgs[i];
 
 //     }
-// }
-
-
+function run() {
 
 if (input1 === "my-tweets") {
+    twitterFun();
 
+} else if (input1 === "movie-this") {
+    OMDBFun();
+} else if (input1 === "spotify-this-song") {
+    spotifyFun();
+
+} else if (input1 === "do-whatever-it-says") {
+    doWhatever();
+}
+}
+
+function twitterFun() {
     var params = {
         screen_name: 'barnumtj',
         count: 20
 
-    };
+
+    }; console.log(params)
     twitter1.get('statuses/user_timeline', params, function (error, tweets, response) {
         if (!error) {
 
@@ -49,13 +60,17 @@ if (input1 === "my-tweets") {
                 console.log("@barnumtj: " + tweets[i].text + " Created At: " + date.substring(0, 19));
 
                 console.log("-----------------------");
+                
             }
 
         }
     });
+
+
 }
 
-else if (input1 === "movie-this") {
+function OMDBFun() {
+
     if (input3.length < 1) {
 
         input3 = "Mr. Nobody";
@@ -92,10 +107,10 @@ else if (input1 === "movie-this") {
 
         }
     });
-}
 
-else if (input1 === "spotify-this-song") {
-    if (input3.length < 1){
+}
+function spotifyFun() {
+    if (input3.length < 1) {
         input3 = "the sign ace of base"
     }
     spotify1.search({ type: 'track', query: input3 }, function (err, data) {
@@ -109,27 +124,27 @@ else if (input1 === "spotify-this-song") {
         console.log("Preview URL: " + data.tracks.items[0].preview_url)
         console.log("Album: " + data.tracks.items[0].album.name)
     });
+};
+function doWhatever() {
 
-if (input1 === "do") {
-    fs.readFile("./random.txt", "utf-8", function(error, data) {
-
-        // If the code experiences any errors it will log the error to the console.
-        if (error) {
-          return console.log(error);
+    fs.readFile("./random.txt", "utf-8", function (err, data) {
+        if (err) {
+            return console.log(err);
         }
+
+        // Break the string down by comma separation and store the contents into the output array.
+
+        var dataArr = data.split(',');
+       
+        let input1 = dataArr[0]
+        let input3 = dataArr[1];
+        console.log(input1, input3)
+
       
-        // We will then print the contents of data
-        console.log(data);
-      
-        // Then split it by commas (to make it more readable)
-        // var dataArr = data.split(",");
-      
-        // // We will then re-display the content as an array for later use.
-        // console.log(dataArr);
-      
-      });
+
+
+        
+
+		
+    });
 }
-
-
-}
-
