@@ -1,7 +1,7 @@
 # Liri-Bot
 Language interpretation bot ran on node.js
 
-LIRI-Bot
+# LIRI-Bot
 LIRI is a Language Interpretation and Recognition Interface. LIRI will be a command line node app that takes in parameters and gives you back data. LIRI uses the following commands:
 
 my-tweets
@@ -12,12 +12,13 @@ movie-this
 
 do-what-it-says
 
-Technologies used:
+# Technologies used:
 
 Node.js
 Javascript
 npm packages: require, twitter, spotify
-How to Run LIRI-Bot
+
+# How to Run LIRI-Bot
 
 1: node liri.js my-tweets This will show your last 20 tweets and when they were created at in your terminal/bash window.
 
