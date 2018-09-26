@@ -45,4 +45,4 @@ If the user doesn't type a movie in, the program will output data for the movie 
 
 This will output the command placed in random.txt file
 
-![Image of Example](http://recordit.co/lPdZzSfkbd)
+![Image of Example](http://g.recordit.co/lPdZzSfkbd.gif)
