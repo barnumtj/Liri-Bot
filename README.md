@@ -44,3 +44,5 @@ If the user doesn't type a movie in, the program will output data for the movie 
 4: node liri.js do-what-it-says
 
 This will output the command placed in random.txt file
+
+![Image of Example](http://recordit.co/lPdZzSfkbd)
